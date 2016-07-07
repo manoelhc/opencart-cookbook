@@ -87,3 +87,18 @@ attribute "opencart/admin/email",
   :display_name          => "Admin email",
   :description           => "Admin email",
   :default               => ""
+
+attribute "opencart/apache/confdir",
+  :display_name          => "Apache's error log",
+  :description           => "Where do you want to redirect the Apache error logs for OpenCart. Keep it empty for auto discovery.",
+  :default               => ""
+
+attribute "opencart/apache/logs/error",
+  :display_name          => "Apache's error log",
+  :description           => "Where do you want to redirect the Apache error logs for OpenCart",
+  :default               => "/var/log/opencart/error.log"
+
+attribute "opencart/apache/logs/info",
+  :display_name          => "Apache's info log",
+  :description           => "Where do you want to redirect the Apache info logs for OpenCart",
+  :default               => "/var/log/opencart/info"

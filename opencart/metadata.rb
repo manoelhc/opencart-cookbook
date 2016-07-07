@@ -1,13 +1,12 @@
 name             'opencart'
 maintainer       'Manoel Carvalho'
 maintainer_email 'manoelhc@gmail.com'
-license          'All rights reserved'
+license          'MIT'
 description      'Installs/Configures opencart'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
 
-depends          'yum'
-depends          'apt'
+depends 'git'
 
 %w[ centos redhat fedora debian ubuntu ].each do |os|
   supports os

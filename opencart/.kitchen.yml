@@ -1,16 +1,35 @@
 ---
 driver:
   name: vagrant
+  driver:
+    network:
+    - private_network:
+        ip: 192.168.2.110
+
+    - forwarded_port:
+        guest: 58080
+        host: 58080
+    - forwarded_port:
+        guest: 80
+        host: 58083
 
 provisioner:
   name: chef_solo
 
 platforms:
   - name: ubuntu-14.04
-  - name: centos-6.5
+attributes:
+  chef_client:
+    config:
+      log_level: ":debug"
 
 suites:
   - name: default
     run_list:
+      - recipe[opencart::install_ubuntu_env_for_test]
+      - recipe[opencart::install_db_structure]
       - recipe[opencart::default]
+
     attributes:
+      opencart:
+         git_url: https://github.com/opencart/opencart.git

@@ -1,68 +1,125 @@
-opencart Cookbook
+Opencart Cookbook
 =================
-TODO: Enter the cookbook description here.
 
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+Installs/Configures opencart
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
 
-e.g.
-#### packages
-- `toaster` - opencart needs toaster to brown your bagel.
+### Platform:
+
+* Centos
+* Redhat
+* Fedora
+* Debian
+* Ubuntu
+
+### Cookbooks:
+
+* tar
+* git
+* mysql
+* composer
+* php
+* apache2
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
 
-e.g.
-#### opencart::default
 <table>
   <tr>
-    <th>Key</th>
-    <th>Type</th>
-    <th>Description</th>
-    <th>Default</th>
+    <td>Attribute</td>
+    <td>Description</td>
+    <td>Default</td>
   </tr>
   <tr>
-    <td><tt>['opencart']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><code>node['opencart']['git_url']</code></td>
+    <td>The URL of OpenCart repository to be installed</td>
+    <td><code>https://github.com/opencart/opencart.git</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['revision']</code></td>
+    <td>The version number to be installed</td>
+    <td><code>latest</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['url_path']</code></td>
+    <td>This is the path used after domain:port in URL. Ex.: http://local:port${url_path}</td>
+    <td><code>/</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['home_dir']</code></td>
+    <td>The directory of OpenCart installation</td>
+    <td><code>/usr/local/opencart</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['http_port']</code></td>
+    <td>The port number for HTTP connections</td>
+    <td><code>58080</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['webmaster_email']</code></td>
+    <td>Admin email</td>
+    <td><code></code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['rdbms']['name']</code></td>
+    <td>The name of the RDBMS Server</td>
+    <td><code>mysqli</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['rdbms']['hostname']</code></td>
+    <td>The hostname of the RDBMS Server</td>
+    <td><code>localhost</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['rdbms']['port']</code></td>
+    <td>The port number of the RDBMS Server</td>
+    <td><code>3306</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['rdbms']['username']</code></td>
+    <td>The user of the RDBMS Server which will be used by OpenCart</td>
+    <td><code>opencart</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['rdbms']['password']</code></td>
+    <td>The password for the provided RDBMS Server username</td>
+    <td><code>opercart</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['rdbms']['dbname']</code></td>
+    <td>The name of the database which will be used by OpenCart</td>
+    <td><code>opencart</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['rdbms']['table_prefix']</code></td>
+    <td>This prefix will be prepended to the table's name</td>
+    <td><code></code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['admin']['username']</code></td>
+    <td>Admin username</td>
+    <td><code>admin</code></td>
+  </tr>
+  <tr>
+    <td><code>node['opencart']['admin']['password']</code></td>
+    <td>Admin password</td>
+    <td><code>admin</code></td>
   </tr>
 </table>
 
-Usage
------
-#### opencart::default
-TODO: Write usage instructions for each cookbook.
+Recipes
+-------
 
-e.g.
-Just include `opencart` in your node's `run_list`:
+*No recipes defined*
 
-```json
-{
-  "name":"my_node",
-  "run_list": [
-    "recipe[opencart]"
-  ]
-}
-```
+License and Author
+------------------
 
-Contributing
-------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
+Author:: Manoel Carvalho (<manoelhc@gmail.com>)
 
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
+Copyright:: 2016, Manoel Carvalho
 
-License and Authors
--------------------
-Authors: TODO: List authors
+License:: MIT
+

@@ -18,7 +18,3 @@ default['opencart']['rdbms']['table_prefix']   = 'oc_'
 
 default['opencart']['admin']['username']   = 'admin'
 default['opencart']['admin']['password']   = 'admin123'
-
-default['opencart']['apache']['confdir']    = nil
-default['opencart']['apache']['error_log']  = nil
-default['opencart']['apache']['info_log']   = nil

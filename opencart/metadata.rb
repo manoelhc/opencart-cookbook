@@ -5,8 +5,15 @@ license          'MIT'
 description      'Installs/Configures opencart'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 version          '0.1.0'
+issues_url        'https://github.com/manoelhc/opencart-cookbook/issues'
+source_url       'https://github.com/manoelhc/opencart-cookbook'
 
+depends 'tar'
 depends 'git'
+depends 'mysql'
+depends 'composer'
+depends 'php'
+depends 'apache2'
 
 %w[ centos redhat fedora debian ubuntu ].each do |os|
   supports os
@@ -16,6 +23,11 @@ attribute "opencart/git_url",
   :display_name          => "OpenCart Git repository URL",
   :description           => "The URL of OpenCart repository to be installed",
   :default               => "https://github.com/opencart/opencart.git"
+
+attribute "opencart/revision",
+  :display_name          => "OpenCart version",
+  :description           => "The version number to be installed",
+  :default               => "latest"
 
 attribute "opencart/url_path",
   :display_name          => "OpenCart URL path",
@@ -32,42 +44,43 @@ attribute "opencart/http_port",
   :description           => "The port number for HTTP connections",
   :default               => "58080"
 
-attribute "opencart/https_port",
-  :display_name          => "OpenCart port HTTPS",
-  :description           => "The port number for HTTP connections",
-  :default               => "12443"
-
-attribute "opencart/version",
-  :display_name          => "OpenCart version",
-  :description           => "The version number to be installed",
-  :default               => "latest"
-
-attribute "opencart/mysql/hostname",
-  :display_name          => "MySQL Hostname",
-  :description           => "The hostname of the MySQL Server",
-  :default               => "localhost"
-
-attribute "opencart/mysql/port",
-  :display_name          => "MySQL Port",
-  :description           => "The port number of the MySQL Server",
-  :default               => "3306"
-
-attribute "opencart/mysql/username",
-  :display_name          => "MySQL Username",
-  :description           => "The user of the MySQL Server which will be used by OpenCart",
-  :default               => "opencart"
-
-attribute "opencart/mysql/password",
-  :display_name          => "MySQL Password",
-  :description           => "The password for the provided MySQL Server username",
+attribute "opencart/webmaster_email",
+  :display_name          => "Admin email",
+  :description           => "Admin email",
   :default               => ""
 
-attribute "opencart/mysql/dbname",
+
+attribute "opencart/rdbms/name",
+  :display_name          => "RDBMS Name DB module (mysql, postgres)",
+  :description           => "The name of the RDBMS Server",
+  :default               => "mysqli"
+
+attribute "opencart/rdbms/hostname",
+  :display_name          => "RDBMS Hostname",
+  :description           => "The hostname of the RDBMS Server",
+  :default               => "localhost"
+
+attribute "opencart/rdbms/port",
+  :display_name          => "RDBMS Port",
+  :description           => "The port number of the RDBMS Server",
+  :default               => "3306"
+
+attribute "opencart/rdbms/username",
+  :display_name          => "RDBMS Username",
+  :description           => "The user of the RDBMS Server which will be used by OpenCart",
+  :default               => "opencart"
+
+attribute "opencart/rdbms/password",
+  :display_name          => "RDBMS Password",
+  :description           => "The password for the provided RDBMS Server username",
+  :default               => "opercart"
+
+attribute "opencart/rdbms/dbname",
   :display_name          => "Database name",
   :description           => "The name of the database which will be used by OpenCart",
   :default               => "opencart"
 
-attribute "opencart/mysql/table_prefix",
+attribute "opencart/rdbms/table_prefix",
   :display_name          => "Table prefix",
   :description           => "This prefix will be prepended to the table's name",
   :default               => ""
@@ -81,11 +94,6 @@ attribute "opencart/admin/password",
   :display_name          => "Admin password",
   :description           => "Admin password",
   :default               => "admin"
-
-attribute "opencart/admin/email",
-  :display_name          => "Admin email",
-  :description           => "Admin email",
-  :default               => ""
 
 attribute "opencart/apache/confdir",
   :display_name          => "Apache's error log",

@@ -1,31 +1,31 @@
 <?php
 // HTTP
-define('HTTP_SERVER', 'http://localhost/opencart/admin/');
-define('HTTP_CATALOG', 'http://localhost/opencart/');
+define('HTTP_SERVER', 'http://<%=node['opencart']['hostname']%><%=node['opencart']['url_path']%>/admin/');
+define('HTTP_CATALOG', 'http://<%=node['opencart']['hostname']%><%=node['opencart']['url_path']%>/');
 
 // HTTPS
-define('HTTPS_SERVER', 'http://localhost/opencart/admin/');
-define('HTTPS_CATALOG', 'http://localhost/opencart/');
+define('HTTPS_SERVER', 'http://<%=node['opencart']['hostname']%><%=node['opencart']['url_path']%>/admin/');
+define('HTTPS_CATALOG', 'http://<%=node['opencart']['hostname']%><%=node['opencart']['url_path']%>/');
 
 // DIR
-define('DIR_APPLICATION', '/var/www/html/opencart/admin/');
-define('DIR_SYSTEM', '/var/www/html/opencart/system/');
-define('DIR_IMAGE', '/var/www/html/opencart/image/');
-define('DIR_LANGUAGE', '/var/www/html/opencart/admin/language/');
-define('DIR_TEMPLATE', '/var/www/html/opencart/admin/view/template/');
-define('DIR_CONFIG', '/var/www/html/opencart/system/config/');
-define('DIR_CACHE', '/var/www/html/opencart/system/storage/cache/');
-define('DIR_DOWNLOAD', '/var/www/html/opencart/system/storage/download/');
-define('DIR_LOGS', '/var/www/html/opencart/system/storage/logs/');
-define('DIR_MODIFICATION', '/var/www/html/opencart/system/storage/modification/');
-define('DIR_UPLOAD', '/var/www/html/opencart/system/storage/upload/');
-define('DIR_CATALOG', '/var/www/html/opencart/catalog/');
+define('DIR_APPLICATION', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/admin/');
+define('DIR_SYSTEM', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/system/');
+define('DIR_IMAGE', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/image/');
+define('DIR_LANGUAGE', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/admin/language/');
+define('DIR_TEMPLATE', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/admin/view/template/');
+define('DIR_CONFIG', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/system/config/');
+define('DIR_CACHE', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/system/storage/cache/');
+define('DIR_DOWNLOAD', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/system/storage/download/');
+define('DIR_LOGS', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/system/storage/logs/');
+define('DIR_MODIFICATION', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/system/storage/modification/');
+define('DIR_UPLOAD', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/system/storage/upload/');
+define('DIR_CATALOG', '<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>/catalog/');
 
 // DB
-define('DB_DRIVER', 'mysqli');
-define('DB_HOSTNAME', 'localhost');
-define('DB_USERNAME', 'opencart');
-define('DB_PASSWORD', 'opencart123');
-define('DB_DATABASE', 'opencart');
-define('DB_PORT', '3306');
-define('DB_PREFIX', 'oc_');
+define('DB_DRIVER',   '<%=node['opencart']['rdbms']['name']%>');
+define('DB_HOSTNAME', '<%=node['opencart']['rdbms']['hostname']%>');
+define('DB_USERNAME', '<%=node['opencart']['rdbms']['username']%>');
+define('DB_PASSWORD', '<%=node['opencart']['rdbms']['password']%>');
+define('DB_DATABASE', '<%=node['opencart']['rdbms']['dbname']%>');
+define('DB_PORT',     '<%=node['opencart']['rdbms']['port']%>');
+define('DB_PREFIX',   '<%=node['opencart']['rdbms']['table_prefix']%>');

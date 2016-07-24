@@ -1,0 +1,28 @@
+<?php
+include_once "<%=node['opencart']['home_dir'] + '/config/' + node['opencart']['release'] + '/config.php'%>";
+
+$host=DB_HOSTNAME;
+$root="<%=node['opencart']['rdbms']['root_username']%>";
+$root_password="<%=node['opencart']['rdbms']['root_password']%>";
+
+$user=DB_USERNAME;
+$pass=DB_PASSWORD;
+$db=DB_DATABASE;
+
+$driver = DB_DRIVER;
+
+$driver = str_replace("mysqli", "mysql", $driver);
+
+try {
+    $conn_str = $driver . ":host=$host";
+    $dbh = new PDO($conn_str, $root, $root_password);
+
+    $dbh->exec("CREATE DATABASE `$db`;
+            CREATE USER '$user'@'localhost' IDENTIFIED BY '$pass';
+            GRANT ALL ON `$db`.* TO '$user'@'localhost';
+            FLUSH PRIVILEGES;")
+    or die(print_r($dbh->errorInfo(), true));
+
+} catch (PDOException $e) {
+    die("DB ERROR: ". $e->getMessage());
+}

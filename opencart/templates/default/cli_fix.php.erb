@@ -1,0 +1,7 @@
+<?php
+
+$_SERVER['SERVER_PORT'] = "<%=node['opencart']['port']%>";
+$_SERVER['DOCUMENT_ROOT'] = "<%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload" %>";
+$_SERVER['HTTP_HOST'] = "<%=node['opencart']['hostname']%>";
+
+include_once "<%=node['opencart']['home_dir']%>/releases/<%=node['opencart']['release']%>/upload/install/cli_install.php";

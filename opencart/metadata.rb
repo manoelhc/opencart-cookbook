@@ -4,7 +4,7 @@ maintainer_email 'manoelhc@gmail.com'
 license          'MIT'
 description      'Installs/Configures opencart'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.0'
+version          '0.1.1'
 issues_url        'https://github.com/manoelhc/opencart-cookbook/issues'
 source_url       'https://github.com/manoelhc/opencart-cookbook'
 
@@ -94,3 +94,10 @@ attribute "opencart/admin/password",
   :display_name          => "Admin password",
   :description           => "Admin password",
   :default               => "admin"
+
+recipe 'opencart::default', 'To install OpenCart PHP from git to a directory'
+recipe 'opencart::create_database', 'Create a database for OpenCart'
+recipe 'opencart::create_tables', 'Create a database\'s tables for OpenCart'
+recipe 'opencart::create_ubuntu_env_for_test', 'Create a Ubuntu installation with Apache2 and MySQL for testing purpose'
+recipe 'opencart::test', 'Simple installation test'
+recipe 'opencart::apache2_restart', 'Simple Apache 2 bounce'

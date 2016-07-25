@@ -112,7 +112,30 @@ Attributes
 Recipes
 -------
 
-*No recipes defined*
+### opencart::default
+
+To install OpenCart PHP from git to a directory
+
+### opencart::create_database
+
+Create a database for OpenCart
+
+### opencart::create_tables
+
+Create a database's tables for OpenCart
+
+### opencart::create_ubuntu_env_for_test
+
+Create a Ubuntu installation with Apache2 and MySQL for testing purpose
+
+### opencart::test
+
+Simple installation test
+
+### opencart::apache2_restart
+
+Simple Apache 2 bounce
+
 
 License and Author
 ------------------

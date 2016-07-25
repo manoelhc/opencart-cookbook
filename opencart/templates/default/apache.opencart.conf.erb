@@ -11,7 +11,7 @@ Listen <%=node['opencart']['http_port']%>
   </Directory>
 
 	ServerAdmin <%=node['opencart']['webmaster_email']%>
-	DocumentRoot <%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/upload"%>
+	DocumentRoot <%="#{node['opencart']['home_dir']}/releases/#{node['opencart']['release']}/upload"%>
   #ServerName localhost
 	PHPINIDir <%="#{node['opencart']['home_dir']}/#{node['opencart']['release']}/config/php.ini"%>
 	#ErrorLog ${APACHE_LOG_DIR}/error.log

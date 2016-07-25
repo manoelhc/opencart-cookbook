@@ -1,6 +1,3 @@
-#override['apache']['mpm'] = 'prefork'
-#override['apache']['mod_php5']['install_method'] = 'package'
-
 opencart_home = node['opencart']['home_dir'] + "/releases/" + node['opencart']['release']
 opencart_conf_home = node['opencart']['home_dir'] + "/config/" + node['opencart']['release']
 
@@ -22,11 +19,12 @@ bash 'install-env' do
   sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/mysql/app-pass #{node['opencart']['rdbms']['root_password']}'
   sudo debconf-set-selections <<< 'phpmyadmin phpmyadmin/app-password-confirm #{node['opencart']['rdbms']['root_password']}'
 
-  sudo apt-get -y install mysql-server phpmyadmin lynx php5-mcrypt php5-gd php5-curl lynx vim
+  sudo apt-get -y install mysql-server phpmyadmin lynx php5-mcrypt php5-gd php5-curl lynx vim curl
   php5enmod gd
   php5enmod curl
   php5enmod mcrypt
 
-  ln -s #{opencart_conf_home}/apache2_opencart.conf /etc/apache2/sites-enabled
+  ln -s #{opencart_conf_home}/apache2_opencart.conf /etc/apache2/sites-enabled 2>/dev/null
+  exit 0
   EOH
 end

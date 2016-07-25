@@ -2,6 +2,9 @@
 # Cookbook Name:: opencart
 # Recipe:: default
 #
+opencart_home      = node['opencart']['home_dir'] + "/releases/" + node['opencart']['release']
+opencart_conf_home = node['opencart']['home_dir'] + "/config/" + node['opencart']['release']
+
 user 'opencart' do
   action :create
 end
@@ -9,9 +12,6 @@ end
 git_client 'default' do
   action :install
 end
-
-opencart_home = node['opencart']['home_dir'] + "/releases/" + node['opencart']['release']
-opencart_conf_home = node['opencart']['home_dir'] + "/config/" + node['opencart']['release']
 
 directory node['opencart']['home_dir'] do
   owner 'root'
@@ -55,6 +55,22 @@ bash 'move-php-config' do
     EOH
 end
 
+template opencart_home + "/upload/config.php" do
+  source 'config.php.erb'
+  owner 'root'
+  group 'root'
+  mode '0775'
+end
+
+template opencart_home + "/upload/admin/config.php" do
+  source 'config.admin.php.erb'
+  owner 'root'
+  group 'root'
+  mode '0775'
+end
+
+
+
 template opencart_conf_home + "/cli_install.php" do
   source 'cli_fix.php.erb'
   owner 'root'
@@ -67,21 +83,4 @@ template opencart_conf_home + "/apache2_opencart.conf" do
   owner 'root'
   group 'root'
   mode '0775'
-end
-
-bash 'create-db-structure' do
-  code <<-EOH
-    php -d #{opencart_conf_home}/php.ini #{opencart_conf_home}/cli_install.php install \
-      --db_hostname "#{node['opencart']['rdbms']['hostname']}" \
-      --db_username "#{node['opencart']['rdbms']['root_username']}" \
-      --db_password "#{node['opencart']['rdbms']['root_password']}" \
-      --db_database "#{node['opencart']['rdbms']['dbname']}" \
-      --db_driver "#{node['opencart']['rdbms']['name']}" \
-      --db_prefix "#{node['opencart']['rdbms']['table_prefix']}" \
-      --db_port "#{node['opencart']['rdbms']['port']}" \
-      --username "#{node['opencart']['rdbms']['username']}" \
-      --password "#{node['opencart']['rdbms']['password']}" \
-      --email "#{node['opencart']['webmaster_email']}" \
-      --http_server "http://#{node['opencart']['hostname']}:#{node['opencart']['http_port']}#{node['opencart']['url_path']}"
-  EOH
 end

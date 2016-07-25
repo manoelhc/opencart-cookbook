@@ -3,5 +3,8 @@ rvm:
   - 2.2
 install:
   - gem install foodcritic
+  - gem install test-kitchen
 script:
   - foodcritic opencart
+services:
+  - docker

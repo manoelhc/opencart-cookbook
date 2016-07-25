@@ -1,17 +1,9 @@
 ---
 driver:
   name: vagrant
-  driver:
-    network:
-    - private_network:
-        ip: 192.168.2.110
-
-    - forwarded_port:
-        guest: 58080
-        host: 58080
-    - forwarded_port:
-        guest: 80
-        host: 58083
+  network:
+    - ["forwarded_port", {guest: 58080, host: 58080}]
+    - ["private_network", {ip: "192.168.2.110"}]
 
 provisioner:
   name: chef_solo
@@ -26,10 +18,12 @@ attributes:
 suites:
   - name: default
     run_list:
-      - recipe[opencart::install_ubuntu_env_for_test]
-      - recipe[opencart::install_db_structure]
+      - recipe[opencart::create_ubuntu_env_for_test]
+      - recipe[opencart::create_database]
       - recipe[opencart::default]
-
+      - recipe[opencart::create_tables]
+      - recipe[opencart::apache2_restart]
+      - recipe[opencart::test]
     attributes:
       opencart:
          git_url: https://github.com/opencart/opencart.git

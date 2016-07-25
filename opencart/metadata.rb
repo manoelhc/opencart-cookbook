@@ -4,7 +4,7 @@ maintainer_email 'manoelhc@gmail.com'
 license          'MIT'
 description      'Installs/Configures opencart'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.1'
+version          '0.1.2'
 issues_url        'https://github.com/manoelhc/opencart-cookbook/issues'
 source_url       'https://github.com/manoelhc/opencart-cookbook'
 
@@ -15,9 +15,10 @@ depends 'composer'
 depends 'php'
 depends 'apache2'
 
-%w[ centos redhat fedora debian ubuntu ].each do |os|
-  supports os
-end
+#%w[ centos redhat fedora debian ubuntu ].each do |os|
+#  supports os
+#end
+supports 'ubuntu'
 
 attribute "opencart/git_url",
   :display_name          => "OpenCart Git repository URL",

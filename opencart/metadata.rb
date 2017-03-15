@@ -4,20 +4,14 @@ maintainer_email 'manoelhc@gmail.com'
 license          'MIT'
 description      'Installs/Configures opencart'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          '0.1.2'
+version          '0.1.4'
 issues_url        'https://github.com/manoelhc/opencart-cookbook/issues'
 source_url       'https://github.com/manoelhc/opencart-cookbook'
 
-depends 'tar'
-depends 'git'
-depends 'mysql'
-depends 'composer'
+depends 'chef_nginx', '~> 5.1.2'
+depends 'git', '~> 4.6.0'
 depends 'php'
-depends 'apache2'
 
-#%w[ centos redhat fedora debian ubuntu ].each do |os|
-#  supports os
-#end
 supports 'ubuntu'
 
 attribute "opencart/git_url",
@@ -49,7 +43,6 @@ attribute "opencart/webmaster_email",
   :display_name          => "Admin email",
   :description           => "Admin email",
   :default               => ""
-
 
 attribute "opencart/rdbms/name",
   :display_name          => "RDBMS Name DB module (mysql, postgres)",
